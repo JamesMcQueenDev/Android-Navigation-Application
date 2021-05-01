@@ -9,7 +9,7 @@ public class StoredLocation implements Serializable {
     public boolean notificationRequired;
     public double latitude;
     public double longitude;
-    public String uid;
+    public String userId;
 
     public StoredLocation(){
 
@@ -26,7 +26,7 @@ public class StoredLocation implements Serializable {
         locationName = pLocationName;
         latitude = pLatitude;
         longitude = pLongitude;
-        uid = pUid; // UID of the user
+        userId = pUid; // UID of the user
         notificationActive = false;
         notificationRequired = true;
     }

@@ -111,6 +111,9 @@ public class MapViewer extends AppCompatActivity {
 
         setContentView(R.layout.activity_mapviewer);
 
+        //FireBase
+        db = FirebaseFirestore.getInstance();
+
         mapView = findViewById(R.id.map);
 
         mapView.setTileSource(TileSourceFactory.MAPNIK);
@@ -161,10 +164,6 @@ public class MapViewer extends AppCompatActivity {
                 }
             }
         };
-
-        //FireBase
-        db = FirebaseFirestore.getInstance();
-
 
         MapEventsOverlay mapEventsOverlay = new MapEventsOverlay(new MapEventsReceiver() {
             /**
@@ -433,7 +432,7 @@ public class MapViewer extends AppCompatActivity {
                     Marker marker = new Marker(mapView);
                     marker.setPosition(geoPoint);
 
-                    if(user.getUid() == storedLoc.uid){
+                    if(user.getUid() == storedLoc.userId){
                         marker.setIcon(getDrawable(R.drawable.user_pointer_24));
                     }
                     else{

@@ -24,6 +24,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import androidx.core.content.FileProvider;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
@@ -117,6 +118,7 @@ public class TaskWindow extends AppCompatActivity{
         task.description = description;
         task.image = imageUri.toString();
         task.done = false;
+        task.userId = user.getUid();
 
         Executor myExecutor = Executors.newSingleThreadExecutor();
         myExecutor.execute(new Runnable() {
@@ -143,11 +145,13 @@ public class TaskWindow extends AppCompatActivity{
                 task.duedate,
                 task.description,
                 task.image,
-                user.getUid());
+                task.userId);
 
         firestoreDatabase.collection("tasks")
                 .document(newTask.taskName)
                 .set(newTask);
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
 
         this.finish();
     }
@@ -235,10 +239,7 @@ public class TaskWindow extends AppCompatActivity{
                     for(QueryDocumentSnapshot documentSnapshot: task.getResult()){
                         StoredLocation location = documentSnapshot.toObject(StoredLocation.class);
 
-                        //Adds only the logged locations by the user
-                        if(user.getUid() == location.uid){
-                            storedLocations.put(location.locationName,location);
-                        }
+                        storedLocations.put(location.locationName,location);
                     }
                     SpinnerUpdate();
                 }

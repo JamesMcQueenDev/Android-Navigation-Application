@@ -6,7 +6,7 @@ public class StoredTask {
     public String taskTime;
     public String taskDate;
     public String taskImage;
-    public String uid;
+    public String userId;
     public String taskDescription;
 
     public StoredTask(){
@@ -27,7 +27,7 @@ public class StoredTask {
         taskDate = pTaskDate;
         taskDescription = pTaskDescription;
         taskImage = pTaskImage;
-        uid = pUid;
+        userId = pUid;
     }
 
 }

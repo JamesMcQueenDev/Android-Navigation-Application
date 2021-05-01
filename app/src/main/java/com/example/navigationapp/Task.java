@@ -37,4 +37,7 @@ public class Task {
 
     @ColumnInfo(name = "locationName")
     public String locationName;
+
+    @ColumnInfo(name = "userId")
+    public String userId;
 }

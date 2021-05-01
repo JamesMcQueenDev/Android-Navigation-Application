@@ -84,6 +84,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
         holder.titleView.setText(task.title);
         holder.descView.setText(task.description);
 
+
         holder.imageView.setImageURI(Uri.parse(task.image));
 
         holder.doneCheckBox.setChecked(task.done);
