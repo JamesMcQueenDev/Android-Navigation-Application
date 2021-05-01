@@ -110,6 +110,18 @@
             app:layout_constraintTop_toBottomOf="@+id/taskDueDateView"
             app:layout_constraintVertical_bias="0.036" />
 
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Location"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/taskDueDateView"
+            app:layout_constraintVertical_bias="0.175" />
+
         <EditText
             android:id="@+id/taskDueTimeView"
             android:layout_width="369dp"
@@ -163,26 +175,15 @@
             app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <Button
-            android:id="@+id/mapBtn"
-            android:layout_width="130dp"
-            android:layout_height="63dp"
-            android:layout_marginBottom="316dp"
-            android:onClick="onMapClick"
-            android:text="Map"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.995"
-            app:layout_constraintStart_toStartOf="parent" />
-
         <Spinner
             android:id="@+id/spinLocation"
-            android:layout_width="238dp"
-            android:layout_height="56dp"
+            android:layout_width="366dp"
+            android:layout_height="34dp"
             app:layout_constraintBottom_toTopOf="@+id/taskImage"
-            app:layout_constraintEnd_toStartOf="@+id/mapBtn"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/taskDueTimeView" />
+            app:layout_constraintTop_toBottomOf="@+id/taskDueTimeView"
+            app:layout_constraintVertical_bias="0.73" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

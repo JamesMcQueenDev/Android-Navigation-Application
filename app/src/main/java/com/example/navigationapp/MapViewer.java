@@ -66,6 +66,7 @@ public class MapViewer extends AppCompatActivity {
 
     int LOCATION_REQUEST_CODE = 1;
     boolean trackingEnabled = true;
+    boolean permission;
 
     static Map<String, StoredLocation> storedLocations = new HashMap<String, StoredLocation>();
 
@@ -92,8 +93,10 @@ public class MapViewer extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         mapView.onPause();
-        locationManager.removeUpdates(locationListener);
-        listenerRegistration.remove();
+        if(permission){
+            locationManager.removeUpdates(locationListener);
+            listenerRegistration.remove();
+        }
     }
 
     /**
@@ -129,6 +132,8 @@ public class MapViewer extends AppCompatActivity {
         mapController.setCenter(startPoint);
 
         notificationManager = NotificationManagerCompat.from(getApplicationContext());
+
+
 
         locationListener = new LocationListener() {
             @Override
@@ -206,8 +211,7 @@ public class MapViewer extends AppCompatActivity {
      */
     public void startTracking() {
         if (trackingEnabled) {
-
-            boolean permission = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION)
+            permission = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION)
                     == PackageManager.PERMISSION_GRANTED;
 
             if (permission) {
@@ -281,7 +285,6 @@ public class MapViewer extends AppCompatActivity {
                     .build();
 
         return notification;
-
     }
 
     /**

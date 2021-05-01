@@ -10,9 +10,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.ListenerRegistration;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -20,6 +32,8 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
 
     private List<Task> tasks;
     private TasksDB db;
+
+    String taskTitle;
 
     //Assigns components to held variables.
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -81,9 +95,13 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
     {
         final Task task = tasks.get(position);
 
+        taskTitle = task.title;
+
         holder.titleView.setText(task.title);
         holder.descView.setText(task.description);
 
+/*        holder.longitudeView.setText((int)task.longitude);
+        holder.latitudeView.setText((int)task.latitude);*/
 
         holder.imageView.setImageURI(Uri.parse(task.image));
 
@@ -117,12 +135,18 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
         return tasks.size();
     }
 
+
+    Map<String,StoredTask> fieldToDelete = new HashMap();
     /**
      * Deletes the selected held task
      * @param position
      */
     public void deleteTask(int position){
         final Task task = tasks.get(position);
+
+        FirebaseFirestore.getInstance().collection("tasks")
+                .document(taskTitle)
+                .delete();
 
         Executor myExecutor = Executors.newSingleThreadExecutor();
         myExecutor.execute(new Runnable() {
@@ -131,5 +155,6 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
                 db.taskDAO().deleteTask(task);
             }
         });
+
     }
 }

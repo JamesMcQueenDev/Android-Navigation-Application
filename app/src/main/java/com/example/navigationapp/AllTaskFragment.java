@@ -83,6 +83,7 @@ public class AllTaskFragment extends Fragment {
         taskListAdapter = new TaskListAdapter();
         recyclerView.setAdapter(taskListAdapter);
 
+
         ItemTouchHelper.SimpleCallback touchHelperCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT){
             public boolean onMove(RecyclerView recyclerView,
                                   RecyclerView.ViewHolder viewHolder,
