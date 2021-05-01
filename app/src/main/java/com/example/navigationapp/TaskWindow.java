@@ -216,7 +216,11 @@ public class TaskWindow extends AppCompatActivity{
                 if(task.isSuccessful()){
                     for(QueryDocumentSnapshot documentSnapshot: task.getResult()){
                         StoredLocation location = documentSnapshot.toObject(StoredLocation.class);
-                        storedLocations.put(location.locationName,location);
+
+                        //Adds only the logged locations by the user
+                        if(user.getUid() == location.uid){
+                            storedLocations.put(location.locationName,location);
+                        }
                     }
                     SpinnerUpdate();
                 }
