@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <item
+        android:id="@+id/page_all"
+        android:icon="@drawable/ic_baseline_list_24"
+        android:title="All"/>
+    <item
+        android:id="@+id/page_done"
+        android:icon="@drawable/ic_baseline_done_all_24"
+        android:title="Done"/>
+    <item
+        android:id="@+id/page_todo"
+        android:icon="@drawable/ic_baseline_pending_actions_24"
+        android:title="ToDo"/>
+</menu>

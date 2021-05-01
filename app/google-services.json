@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "987858931697",
+    "project_id": "geotasktracker",
+    "storage_bucket": "geotasktracker.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:987858931697:android:d2ecc9959a05f0d7a03e50",
+        "android_client_info": {
+          "package_name": "com.example.navigationapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "987858931697-aki7gj80muh892a42uo1hg3iuoct11sc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4458KDGV2NVRb2BpScZYZDEKS8AATBl8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "987858931697-aki7gj80muh892a42uo1hg3iuoct11sc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
