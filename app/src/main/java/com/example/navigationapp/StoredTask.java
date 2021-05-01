@@ -13,6 +13,14 @@ public class StoredTask {
 
     }
 
+    /**
+     *
+     * @param pTaskName
+     * @param pTaskDate
+     * @param pTaskDescription
+     * @param pTaskImage
+     * @param pUid
+     */
     public StoredTask(String pTaskName, String pTaskDate, String pTaskDescription, String pTaskImage, String pUid){
 
         taskName = pTaskName;

@@ -15,6 +15,13 @@ public class StoredLocation implements Serializable {
 
     }
 
+    /**
+     *
+     * @param pLocationName
+     * @param pLatitude
+     * @param pLongitude
+     * @param pUid
+     */
     public StoredLocation(String pLocationName, double pLatitude, double pLongitude, String pUid){
         locationName = pLocationName;
         latitude = pLatitude;

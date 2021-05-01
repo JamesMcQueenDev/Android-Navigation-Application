@@ -22,6 +22,10 @@ public class HomeScreen extends AppCompatActivity {
 
     private static final int RC_SIGN_IN = 123;
 
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -30,6 +34,9 @@ public class HomeScreen extends AppCompatActivity {
         setContentView(R.layout.activity_home_screen);
     }
 
+    /**
+     *
+     */
     public void createSignIntent(){
         List<AuthUI.IdpConfig> providers = Arrays.asList(
                 new AuthUI.IdpConfig.EmailBuilder().build());
@@ -44,11 +51,17 @@ public class HomeScreen extends AppCompatActivity {
                 RC_SIGN_IN);
     }
 
+    /**
+     *
+     * @param view
+     */
     public void onSignIn(View view){
         createSignIntent();
     }
 
-
+    /**
+     *
+     */
     public void signOut(){
         AuthUI.getInstance()
                 .signOut(this)
@@ -60,6 +73,9 @@ public class HomeScreen extends AppCompatActivity {
                 });
     }
 
+    /**
+     *
+     */
     public void delete(){
         AuthUI.getInstance()
                 .delete(this)
@@ -71,6 +87,12 @@ public class HomeScreen extends AppCompatActivity {
                 });
     }
 
+    /**
+     *
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode,resultCode,data);

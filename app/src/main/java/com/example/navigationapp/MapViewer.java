@@ -73,6 +73,9 @@ public class MapViewer extends AppCompatActivity {
 
     NotificationManagerCompat notificationManager;
 
+    /**
+     *
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -82,6 +85,9 @@ public class MapViewer extends AppCompatActivity {
         setListenerRegistration();
     }
 
+    /**
+     *
+     */
     @Override
     protected void onPause() {
         super.onPause();
@@ -90,6 +96,10 @@ public class MapViewer extends AppCompatActivity {
         listenerRegistration.remove();
     }
 
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -157,12 +167,22 @@ public class MapViewer extends AppCompatActivity {
 
 
         MapEventsOverlay mapEventsOverlay = new MapEventsOverlay(new MapEventsReceiver() {
+            /**
+             *
+             * @param p
+             * @return
+             */
             @Override
             public boolean singleTapConfirmedHelper(GeoPoint p) {
                 Log.d("MyLocation","Top at " +p.toString());
                 return false;
             }
 
+            /**
+             *
+             * @param p
+             * @return
+             */
             @Override
             public boolean longPressHelper(GeoPoint p) {
                 Log.d("MyLocation","Press at " + p.toString());
@@ -174,9 +194,17 @@ public class MapViewer extends AppCompatActivity {
         mapView.getOverlays().add(mapEventsOverlay);
     }
 
+    /**
+     *
+     * @param view
+     */
     public void onHomeClick(View view){
         this.finish();
     }
+
+    /**
+     *
+     */
     public void startTracking() {
         if (trackingEnabled) {
 
@@ -194,6 +222,12 @@ public class MapViewer extends AppCompatActivity {
         }
     }
 
+    /**
+     *
+     * @param requestCode
+     * @param permissions
+     * @param grantResults
+     */
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         if (requestCode == LOCATION_REQUEST_CODE) {
@@ -205,6 +239,9 @@ public class MapViewer extends AppCompatActivity {
         }
     }
 
+    /**
+     *
+     */
     @SuppressLint("MissingPermission")
     public void updateLocation() {
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
@@ -221,6 +258,12 @@ public class MapViewer extends AppCompatActivity {
     static final String NOTIFICATION_KEY = "MyLocation";
     static final int NOTIFICATION_INTENT_CODE = 0;
 
+    /**
+     *
+     * @param storedLocation
+     * @param distance
+     * @return
+     */
     private Notification createNotification(StoredLocation storedLocation, double distance) {
 
         Intent intent = getIntent();
@@ -242,6 +285,10 @@ public class MapViewer extends AppCompatActivity {
 
     }
 
+    /**
+     *
+     * @param intent
+     */
     protected void onNewIntent(Intent intent){
         super.onNewIntent(intent);
 
@@ -255,6 +302,10 @@ public class MapViewer extends AppCompatActivity {
         }
     }
 
+    /**
+     *
+     * @param storedLocation
+     */
     private void showNotificationDialog(StoredLocation storedLocation){
 
         storedLocation.notificationActive = false;
@@ -263,6 +314,11 @@ public class MapViewer extends AppCompatActivity {
                 .setTitle(storedLocation.locationName)
                 .setMessage("You are within proximity of this location! Do you want to receive notifications from this location in the future?")
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    /**
+                     *
+                     * @param dialog
+                     * @param i
+                     */
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
                         storedLocation.notificationActive = false;
@@ -274,6 +330,11 @@ public class MapViewer extends AppCompatActivity {
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    /**
+                     *
+                     * @param dialog
+                     * @param i
+                     */
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
                         storedLocation.notificationActive = false;
@@ -288,6 +349,10 @@ public class MapViewer extends AppCompatActivity {
                 .show();
     }
 
+    /**
+     *
+     * @param geoPoint
+     */
     private void addNewLocationDialog(GeoPoint geoPoint){
         Log.d("MyLocation","Long at " + geoPoint);
 
@@ -299,6 +364,11 @@ public class MapViewer extends AppCompatActivity {
                 .setTitle("Create New Location")
                 .setView(locationEditText)
                 .setPositiveButton("Add", new DialogInterface.OnClickListener() {
+                    /**
+                     *
+                     * @param dialog
+                     * @param i
+                     */
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
                         String locationName = locationEditText.getText().toString();
@@ -314,6 +384,11 @@ public class MapViewer extends AppCompatActivity {
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    /**
+                     *
+                     * @param dialog
+                     * @param i
+                     */
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
 
@@ -323,10 +398,18 @@ public class MapViewer extends AppCompatActivity {
                 .show();
     }
 
+    /**
+     *
+     */
     private void setListenerRegistration(){
         //This block of code bricks the app
         CollectionReference collection = db.collection("locations");
         listenerRegistration = collection.addSnapshotListener(new EventListener<QuerySnapshot>() {
+            /**
+             *
+             * @param value
+             * @param error
+             */
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                 Log.d("MyLocation","Collection Changed");

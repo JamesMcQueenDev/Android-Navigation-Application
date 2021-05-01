@@ -43,13 +43,23 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
         }
     }
 
-    //Sets the task list
+    /**
+     * Sets the task list
+     * @param db
+     * @param tasks
+     */
     public void setTaskList(TasksDB db, List<Task> tasks){
         this.db = db;
         this.tasks = tasks;
         notifyDataSetChanged();
     }
 
+    /**
+     *
+     * @param parent
+     * @param viewType
+     * @return
+     */
     @NonNull
     @Override
     public TaskListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
@@ -61,6 +71,11 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
         return new ViewHolder(view);
     }
 
+    /**
+     *
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(@NonNull TaskListAdapter.ViewHolder holder, int position)
     {
@@ -91,13 +106,20 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
         );
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int getItemCount(){
         if(tasks == null) return 0;
         return tasks.size();
     }
 
-    //Deletes the selected held task
+    /**
+     * Deletes the selected held task
+     * @param position
+     */
     public void deleteTask(int position){
         final Task task = tasks.get(position);
 

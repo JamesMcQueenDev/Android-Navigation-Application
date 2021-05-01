@@ -74,6 +74,10 @@ public class TaskWindow extends AppCompatActivity{
 
     List<String> locationSpinner = new ArrayList<>();
 
+    /**
+     * Creates the XML page
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,7 +95,10 @@ public class TaskWindow extends AppCompatActivity{
         Location();
     }
 
-    //Logs when Save Button is pressed
+    /**
+     * Logs when Save Button is pressed
+     * @param view
+     */
     public void onSaveClick(View view) {
         Log.d("ToDoApp","onSaveClick");
 
@@ -145,12 +152,18 @@ public class TaskWindow extends AppCompatActivity{
         this.finish();
     }
 
+    /**
+     *
+     */
     @Override
     public void onPause(){
         super.onPause();
         listenerRegistration.remove();
     }
 
+    /**
+     *
+     */
     @Override
     public void onResume(){
         super.onResume();
@@ -195,7 +208,9 @@ public class TaskWindow extends AppCompatActivity{
         });
     }
 
-    //RENAME VARIABLES A BIT
+    /**
+     * Updates the contents of the Spinner
+     */
     public void SpinnerUpdate(){
 
         Spinner spinner = findViewById(R.id.spinLocation);
@@ -208,6 +223,9 @@ public class TaskWindow extends AppCompatActivity{
         spinner.setAdapter(spinAdapter);
     }
 
+    /**
+     * Gets the location name and stores it to the Hash Map
+     */
     public void Location(){
         CollectionReference collectionReference = firestoreDatabase.collection("locations");
         collectionReference.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -228,7 +246,10 @@ public class TaskWindow extends AppCompatActivity{
         });
     }
 
-    //Calls the Map
+    /**
+     * Calls the Map
+     * @param view
+     */
     public void onMapClick(View view){
         Intent intent = new Intent(this, MapViewer.class);
         startActivity(intent);
@@ -236,7 +257,11 @@ public class TaskWindow extends AppCompatActivity{
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
     Uri imageUri;
-    //Method launches the camera feature of the task creation
+
+    /**
+     * Method launches the camera feature of the task creation
+     * @param view
+     */
     public void onCameraClick(View view){
         Log.d("ToDoApp","onCameraClick");
 
@@ -251,7 +276,10 @@ public class TaskWindow extends AppCompatActivity{
         startActivityForResult(takePictureIntent,REQUEST_IMAGE_CAPTURE);
     }
 
-    //Updates the Date of the Widget
+    /**
+     * Updates the Date of the Widget
+     * @param view
+     */
     public void onDateClick(View view){
         Log.d("ToDoApp","onDateClick");
 
@@ -267,7 +295,10 @@ public class TaskWindow extends AppCompatActivity{
         dialog.show();
     }
 
-    //Updates the Time of the Widget
+    /**
+     * Updates the Time of the Widget
+     * @param view
+     */
     public void onTimeClick(View view){
         Log.d("ToDoApp","onDateClick");
 
@@ -283,7 +314,12 @@ public class TaskWindow extends AppCompatActivity{
         dialog.show();
     }
 
-    //Updates the image view to display the most recent image taken
+    /**
+     * Updates the image view to display the most recent image taken
+     * @param requestCode
+     * @param resultCode
+     * @param resultData
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent resultData){
         super.onActivityResult(requestCode,resultCode,resultData);

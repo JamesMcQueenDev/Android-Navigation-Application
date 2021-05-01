@@ -24,7 +24,10 @@ public class ToDoListActivity extends AppCompatActivity {
     TasksDB db;
     TaskListAdapter taskListAdapter;
 
-    //Creates the task block viewing list
+    /**
+     * Creates the task block viewing list
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,11 +49,23 @@ public class ToDoListActivity extends AppCompatActivity {
 
         //Allows user to delete task by swiping the task card to the right
         ItemTouchHelper.SimpleCallback touchHelperCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
+            /**
+             *
+             * @param recyclerView
+             * @param viewHolder
+             * @param target
+             * @return
+             */
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
                 return false;
             }
 
+            /**
+             *
+             * @param viewHolder
+             * @param direction
+             */
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction){
                 int swipedPosition = viewHolder.getAdapterPosition();
@@ -63,7 +78,9 @@ public class ToDoListActivity extends AppCompatActivity {
         itemTouchHelper.attachToRecyclerView(recyclerView);
     }
 
-    //Updates the landing page to display the tasks taken in
+    /**
+     * Updates the landing page to display the tasks taken in
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -80,13 +97,20 @@ public class ToDoListActivity extends AppCompatActivity {
         });
     }
 
-    //Brings up Task Creation
+    /**
+     * Brings up Task Creation
+     * @param view
+     */
     public void onNewTaskClicked(View view){
         Log.d("ToDoApp","onNewTaskClicked");
         Intent taskIntent = new Intent(ToDoListActivity.this,TaskWindow.class);
         startActivity(taskIntent);
     }
 
+    /**
+     *
+     * @param view
+     */
     public void returnClicked(View view){
         this.finish();
     }
